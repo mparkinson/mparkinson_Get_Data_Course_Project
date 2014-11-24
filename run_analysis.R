@@ -16,10 +16,10 @@ features <- read.table("features.txt")[,2]  # We only need the names from the fe
 activityLabels <- read.table("activity_labels.txt")[,2] # Like with features, only the second column is needed
 
 # Extract only the items in features with mean() or std() in the name
-subsetFeatures <- grepl("mean\\(\\)|std\\(\\)",features)
+subsetFeatures <- grep("mean\\(\\)|std\\(\\)",features, value = TRUE)
 
 # Assign the column names from the features table to xData
-colnames(xData) <- features
+colnames(xData) <- subsetFeatures
 
 # Append an additional column to label the activity, similar to VLOOKUP in Excel
 yData[,2] = activityLabels[yData[,1]]
